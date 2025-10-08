@@ -31,10 +31,72 @@
             </fieldset>
 
             <fieldset>
-                <legend>2. المستفيدون وبياناتهم التفصيلية</legend>
-                <div id="beneficiariesContainer">
+                <legend>2. معلومات الوالدين</legend>
+                <div class="form-group">
+                    <label for="fatherStatus">الحالة الحياتية للأب:</label>
+                    <select id="fatherStatus">
+                        <option value="">-- اختر --</option>
+                        <option value="حي">حي</option>
+                        <option value="متوفي">متوفي</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="motherStatus">الحالة الحياتية للأم:</label>
+                    <select id="motherStatus">
+                        <option value="">-- اختر --</option>
+                        <option value="حية">حية</option>
+                        <option value="متوفية">متوفية</option>
+                    </select>
+                </div>
+                <div id="parentsMaritalStatusWrapper" class="form-group hidden">
+                    <label for="parentsMaritalStatus">الحالة الاجتماعية للوالدين:</label>
+                    <select id="parentsMaritalStatus">
+                        <option value="">-- اختر --</option>
+                        <option value="مجتمعين">مجتمعين</option>
+                        <option value="منفصلين">منفصلين</option>
+                    </select>
+                </div>
+                <div id="parentsStatusNote" class="status-note hidden"></div>
+            </fieldset>
+            
+            <fieldset id="combinedFinancials" class="hidden">
+                <legend>3. الحالة المادية للوالدين (مجتمعين)</legend>
+                <div class="form-group"><label>اسم المستفيد (الأهل):</label><input type="text" placeholder="مثال: أهل الشهيد فلان"></div>
+                <div class="form-group"><label>إجمالي دخل الأسرة:</label><input type="number" placeholder="الدخل الشهري"></div>
+                <div class="form-group"><label>إجمالي مصاريف الأسرة:</label><input type="number" placeholder="المصاريف الشهرية"></div>
+            </fieldset>
+
+            <div id="separatedFinancials" class="hidden">
+                <fieldset>
+                    <legend>3.1. الحالة المادية للأب (منفصل)</legend>
+                    <div class="form-group"><label>اسم المستفيد (الأب):</label><input type="text" placeholder="اسم الأب الكامل"></div>
+                    <div class="form-group"><label>إجمالي دخل الأب:</label><input type="number" placeholder="الدخل الشهري للأب"></div>
+                    <div class="form-group"><label>إجمالي مصاريف الأب:</label><input type="number" placeholder="المصاريف الشهرية للأب"></div>
+                </fieldset>
+                <fieldset>
+                    <legend>3.2. الحالة المادية للأم (منفصلة)</legend>
+                    <div class="form-group"><label>اسم المستفيد (الأم):</label><input type="text" placeholder="اسم الأم الكامل"></div>
+                    <div class="form-group"><label>إجمالي دخل الأم:</label><input type="number" placeholder="الدخل الشهري للأم"></div>
+                    <div class="form-group"><label>إجمالي مصاريف الأم:</label><input type="number" placeholder="المصاريف الشهرية للأم"></div>
+                </fieldset>
+            </div>
+            
+             <fieldset id="survivorFinancials" class="hidden">
+                <legend>3. الحالة المادية للوالد الباقي على قيد الحياة</legend>
+                 </fieldset>
+
+            <fieldset id="spouseSection" class="hidden">
+                <legend>4. معلومات الزوجة والحالة المادية</legend>
+                <div class="form-group"><label>اسم المستفيد (الزوجة):</label><input type="text" placeholder="اسم الزوجة الكامل"></div>
+                <div class="form-group"><label>دخل الزوجة الشهري:</label><input type="number" placeholder="0"></div>
+                <div class="form-group"><label>عدد الأولاد:</label><input type="number" min="0" placeholder="0"></div>
+            </fieldset>
+            
+            <fieldset>
+                <legend>5. مستفيدون آخرون (إن وجد)</legend>
+                <div id="otherBeneficiariesContainer">
                     </div>
-                <button type="button" id="addBeneficiaryBtn" class="add-btn">+ إضافة مستفيد</button>
+                <button type="button" id="addOtherBeneficiaryBtn" class="add-btn">+ إضافة مستفيد آخر</button>
             </fieldset>
 
             <button type="submit">عرض التقرير</button>
@@ -45,83 +107,11 @@
         </div>
     </div>
 
-    <template id="beneficiaryTemplate">
+    <template id="otherBeneficiaryTemplate">
         <div class="beneficiary-card">
             <button type="button" class="remove-btn">×</button>
-            
-            <h4>معلومات المستفيد الأساسية</h4>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>صلة القرابة:</label>
-                    <select class="beneficiary-relation">
-                        <option value="">-- اختر --</option>
-                        <option value="اب">اب</option>
-                        <option value="ام">ام</option>
-                        <option value="الاهل">الاهل (مجتمعين)</option>
-                        <option value="الزوجة">الزوجة</option>
-                        <option value="الابن">الابن</option>
-                        <option value="البنت">البنت</option>
-                        <option value="الاخ">الاخ</option>
-                        <option value="الاخت">الاخت</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>اسم المستفيد:</label>
-                    <input type="text" class="beneficiary-name" placeholder="اسم المستفيد">
-                </div>
-            </div>
-
-            <hr class="card-separator">
-            <h4>المعايير الخاصة بالمستفيد</h4>
-            
-            <div class="form-group">
-                <label>السكن:</label>
-                <select class="housing-type">
-                    <option value="">-- اختر النوع --</option>
-                    <option value="ملك">ملك</option>
-                    <option value="تجاوز">تجاوز</option>
-                    <option value="ايجار">ايجار</option>
-                    <option value="اخرى">اخرى</option>
-                </select>
-            </div>
-            <div class="housing-details-container">
-                <div class="form-group hidden" data-housing-detail="ملك"><label>حالة الملك:</label><select><option value="جيدة">جيدة</option><option value="وسط">وسط</option><option value="متهالك">متهالك</option></select></div>
-                <div class="form-group hidden" data-housing-detail="تجاوز"><label>نوع التجاوز:</label><select><option value="زراعي، عشوائي">زراعي، عشوائي</option><option value="تجاوز على البلدية">تجاوز على البلدية</option></select></div>
-                <div class="form-group hidden" data-housing-detail="ايجار"><label>نوع الإيجار:</label><select><option value="عالي">إيجار عالي</option><option value="وسط">إيجار وسط</option><option value="بسيط">إيجار بسيط</option></select></div>
-                <div class="form-group hidden" data-housing-detail="اخرى"><label>خيارات أخرى:</label><select><option value="مع الاهل">مع الاهل</option><option value="خيري">خيري</option></select></div>
-            </div>
-
-            <div class="form-group">
-                <label>الوضع الصحي (يمكن اختيار اكثر من خيار):</label>
-                <div class="checkbox-group">
-                    <div><input type="checkbox" value="مرض مزمن"><label>مرض مزمن</label></div>
-                    <div><input type="checkbox" value="إعاقة"><label>إعاقة</label></div>
-                    <div><input type="checkbox" value="علاج متكرر"><label>علاج متكرر</label></div>
-                    <div><input type="checkbox" value="صحة متوسطة"><label>صحة متوسطة</label></div>
-                    <div><input type="checkbox" value="صحة مستقرة"><label>صحة مستقرة</label></div>
-                    <div><input type="checkbox" value="صحة جيدة"><label>صحة جيدة</label></div>
-                </div>
-            </div>
-
-            <div class="form-group"><label>عدد الأبناء المستمرين بالدراسة:</label><input type="number" min="0" placeholder="0"></div>
-            <div class="form-group"><label>نوع المدارس:</label><select><option value="">-- اختر --</option><option value="اهلي">أهلي</option><option value="حكومي">حكومي</option></select></div>
-
-            <div class="form-group"><label>المعيشة والأجهزة:</label><select><option value="">-- اختر --</option><option value="يفتقر للاجهزة الكهربائية">يفتقر للاجهزة الكهربائية</option><option value="يمتلك القليل من الأجهزة">يمتلك القليل من الأجهزة</option><option value="يمتلك اغلبها">يمتلك اغلبها</option><option value="مكتملة بحالة بسيطة">مكتملة بحالة بسيطة</option><option value="مكتملة و جيدة">مكتملة و جيدة</option></select></div>
-
-            <div class="form-group"><label>الدخل والمعيل:</label><select><option value="">-- اختر --</option><option value="لا يوجد دخل ثابت">لا يوجد دخل ثابت</option><option value="دخل ضعيف جدا">دخل ضعيف جدا</option><option value="دخل متوسط">دخل متوسط</option><option value="دخل ثابت و مقبول">دخل ثابت و مقبول</option><option value="دخل جيد">دخل جيد</option></select></div>
-            
-            <hr class="card-separator">
-            <h4>الحالة المادية للمستفيد</h4>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>الدخل الشهري:</label>
-                    <input type="number" class="beneficiary-income" placeholder="0" value="0">
-                </div>
-                <div class="form-group">
-                    <label>المصاريف الشهرية:</label>
-                    <input type="number" class="beneficiary-expenses" placeholder="0" value="0">
-                </div>
-            </div>
+            <div class="form-row"><div class="form-group"><label>صلة القرابة:</label><select class="beneficiary-relation"><option value="">-- اختر --</option><option value="الابن">الابن</option><option value="البنت">البنت</option><option value="الاخ">الاخ</option><option value="الاخت">الاخت</option><option value="آخر">آخر</option></select></div><div class="form-group"><label>اسم المستفيد:</label><input type="text" class="beneficiary-name" placeholder="اسم المستفيد الآخر"></div></div>
+            <div class="form-row"><div class="form-group"><label>الدخل الشهري:</label><input type="number" class="beneficiary-income" placeholder="0" value="0"></div><div class="form-group"><label>المصاريف الشهرية:</label><input type="number" class="beneficiary-expenses" placeholder="0" value="0"></div></div>
         </div>
     </template>
 
