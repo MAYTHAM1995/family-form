@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         // 4. [جديد] إرسال البيانات
-        const googleScriptURL = "ضع رابط الويب آب الخاص بك هنا"; // <---!! الصق الرابط هنا !!
+        const googleScriptURL = "https://script.google.com/macros/s/AKfycbyuO8cwYicgRomcEqYQH-fLO-r9hZePqngmMEBCmqYSs8SyWBySQJhcfzNFPZlP_sUW/exec"; // <---!! الصق الرابط هنا !!
 
         fetch(googleScriptURL, {
             method: 'POST',
@@ -119,3 +119,4 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('printButton').addEventListener('click', () => window.print());
 
 });
+
