@@ -1,0 +1,118 @@
+/* Import Modern Arabic Font */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+
+/* General Styling */
+body {
+    font-family: 'Cairo', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e9edf2 100%);
+    color: #333;
+    margin: 0;
+    padding: 40px 20px;
+    line-height: 1.7;
+}
+
+.container {
+    max-width: 1100px; 
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; font-weight: 700; }
+form { display: flex; flex-direction: column; gap: 25px; }
+fieldset { border: 1px solid #e0e6ed; border-radius: 12px; padding: 25px; background-color: #ffffff; transition: box-shadow 0.3s ease; }
+fieldset:hover { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); }
+legend { font-weight: 600; color: #0056b3; padding: 0 10px; font-size: 1.2em; }
+.form-group { margin-bottom: 15px; flex-grow: 1; }
+label { display: block; margin-bottom: 8px; font-weight: 600; color: #555; }
+
+input[type="text"], input[type="number"], select {
+    width: 100%;
+    padding: 10px 12px; 
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: #f8f9fa;
+    color: #495057;
+    font-family: 'Cairo', sans-serif;
+    font-size: 15px; 
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="text"]:focus, input[type="number"]:focus, select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+}
+
+button[type="submit"] {
+    padding: 12px; background: linear-gradient(45deg, #007bff, #0056b3); color: white;
+    border: none; border-radius: 8px; font-size: 17px; font-weight: 600;
+    cursor: pointer; margin-top: 20px; box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+    transition: all 0.3s ease;
+}
+button[type="submit"]:hover { transform: translateY(-3px); box-shadow: 0 7px 20px rgba(0, 123, 255, 0.3); }
+.hidden { display: none !important; }
+
+/* Beneficiary Card Styles */
+.beneficiary-card {
+    background-color: #f8f9fa;
+    border: 1px solid #e0e6ed;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 15px;
+    position: relative;
+}
+.beneficiary-card h4 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #34495e;
+    border-bottom: 1px solid #ced4da;
+    padding-bottom: 10px;
+}
+.card-separator {
+    border: none;
+    border-top: 1px solid #ced4da;
+    margin: 25px 0;
+}
+.form-row { display: flex; gap: 20px; width: 100%; }
+.remove-btn {
+    position: absolute; top: 15px; left: 15px; background-color: #dc3545;
+    color: white; border: none; border-radius: 50%; width: 28px; height: 28px;
+    font-size: 20px; font-weight: bold; cursor: pointer; display: flex;
+    align-items: center; justify-content: center; line-height: 1; transition: background-color 0.3s;
+}
+.remove-btn:hover { background-color: #c82333; }
+.add-btn {
+    width: 100%; padding: 10px; background-color: #e9ecef; color: #495057;
+    border: 2px dashed #ced4da; border-radius: 8px; font-size: 16px;
+    font-weight: 600; cursor: pointer; transition: all 0.3s;
+}
+.add-btn:hover { background-color: #d8dde2; border-color: #adb5bd; }
+.checkbox-group {
+    display: flex; flex-wrap: wrap; gap: 15px; padding: 10px;
+    background-color: #f8f9fa; border: 1px solid #e0e6ed; border-radius: 8px;
+}
+.checkbox-group div { display: flex; align-items: center; }
+.checkbox-group input[type="checkbox"] { width: auto; margin-left: 8px; }
+.checkbox-group label { margin-bottom: 0; font-weight: normal; }
+
+/* Report Section Styling */
+#reportSection fieldset { border: 2px solid #007bff; background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%); }
+#reportClassification { text-align: center; padding: 15px; border-radius: 8px; color: white; font-size: 1.5em; font-weight: 700; margin-bottom: 20px; }
+#reportContent hr { border: none; border-top: 1px solid #e0e6ed; margin: 20px 0; }
+#reportContent p { font-size: 1.1em; padding: 5px 0; }
+#reportContent .net-income span { font-weight: bold; font-size: 1.2em; }
+.status-critical { background: linear-gradient(45deg, #d9534f, #c9302c); }
+.status-difficult { background: linear-gradient(45deg, #f0ad4e, #ec971f); }
+.status-stable { background: linear-gradient(45deg, #5bc0de, #31b0d5); }
+.status-good { background: linear-gradient(45deg, #5cb85c, #4cae4c); }
+#printButton {
+    background: linear-gradient(45deg, #5cb85c, #4cae4c);
+    color: white; border: none; border-radius: 8px; font-size: 17px; 
+    font-weight: 600; cursor: pointer; margin-top: 20px; padding: 12px; 
+    box-shadow: 0 4px 15px rgba(76, 174, 76, 0.2); transition: all 0.3s ease;
+}
+#printButton:hover { transform: translateY(-3px); box-shadow: 0 7px 20px rgba(76, 174, 76, 0.3); }

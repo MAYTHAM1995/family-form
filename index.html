@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استمارة معلومات (النسخة النهائية)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>استمارة معلومات عائلة المضحي</h1>
+        <form id="victimInfoForm">
+
+            <fieldset>
+                <legend>1. معلومات المضحي الأساسية</legend>
+                <div class="form-group">
+                    <label for="fullName">الاسم الرباعي واللقب:</label>
+                    <input type="text" id="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="victimMaritalStatus">الحالة الاجتماعية للمضحي:</label>
+                    <select id="victimMaritalStatus">
+                        <option value="">-- اختر --</option>
+                        <option value="اعزب">اعزب</option>
+                        <option value="متزوج">متزوج</option>
+                        <option value="مطلق">مطلق</option>
+                        <option value="ارمل">ارمل</option>
+                    </select>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>2. المستفيدون وبياناتهم التفصيلية</legend>
+                <div id="beneficiariesContainer">
+                    </div>
+                <button type="button" id="addBeneficiaryBtn" class="add-btn">+ إضافة مستفيد</button>
+            </fieldset>
+
+            <button type="submit">عرض التقرير</button>
+        </form>
+
+        <div id="reportSection" class="hidden">
+            <fieldset><legend>التقرير النهائي لوضع العائلة</legend><div id="reportContent"><h2 id="reportClassification"></h2><hr><h3>ملخص مالي:</h3><p><strong>إجمالي الدخل الشهري:</strong> <span id="reportTotalIncome"></span></p><p><strong>إجمالي النفقات الشهرية:</strong> <span id="reportTotalExpenses"></span></p><p class="net-income"><strong>صافي الدخل (الفائض/العجز):</strong> <span id="reportNetIncome"></span></p><hr><h3>ملخص البيانات المدخلة:</h3><p id="reportSummaryText"></p></div><button id="printButton">طباعة التقرير</button></fieldset>
+        </div>
+    </div>
+
+    <template id="beneficiaryTemplate">
+        <div class="beneficiary-card">
+            <button type="button" class="remove-btn">×</button>
+            
+            <h4>معلومات المستفيد الأساسية</h4>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>صلة القرابة:</label>
+                    <select class="beneficiary-relation">
+                        <option value="">-- اختر --</option>
+                        <option value="اب">اب</option>
+                        <option value="ام">ام</option>
+                        <option value="الاهل">الاهل (مجتمعين)</option>
+                        <option value="الزوجة">الزوجة</option>
+                        <option value="الابن">الابن</option>
+                        <option value="البنت">البنت</option>
+                        <option value="الاخ">الاخ</option>
+                        <option value="الاخت">الاخت</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>اسم المستفيد:</label>
+                    <input type="text" class="beneficiary-name" placeholder="اسم المستفيد">
+                </div>
+            </div>
+
+            <hr class="card-separator">
+            <h4>المعايير الخاصة بالمستفيد</h4>
+            
+            <div class="form-group">
+                <label>السكن:</label>
+                <select class="housing-type">
+                    <option value="">-- اختر النوع --</option>
+                    <option value="ملك">ملك</option>
+                    <option value="تجاوز">تجاوز</option>
+                    <option value="ايجار">ايجار</option>
+                    <option value="اخرى">اخرى</option>
+                </select>
+            </div>
+            <div class="housing-details-container">
+                <div class="form-group hidden" data-housing-detail="ملك"><label>حالة الملك:</label><select><option value="جيدة">جيدة</option><option value="وسط">وسط</option><option value="متهالك">متهالك</option></select></div>
+                <div class="form-group hidden" data-housing-detail="تجاوز"><label>نوع التجاوز:</label><select><option value="زراعي، عشوائي">زراعي، عشوائي</option><option value="تجاوز على البلدية">تجاوز على البلدية</option></select></div>
+                <div class="form-group hidden" data-housing-detail="ايجار"><label>نوع الإيجار:</label><select><option value="عالي">إيجار عالي</option><option value="وسط">إيجار وسط</option><option value="بسيط">إيجار بسيط</option></select></div>
+                <div class="form-group hidden" data-housing-detail="اخرى"><label>خيارات أخرى:</label><select><option value="مع الاهل">مع الاهل</option><option value="خيري">خيري</option></select></div>
+            </div>
+
+            <div class="form-group">
+                <label>الوضع الصحي (يمكن اختيار اكثر من خيار):</label>
+                <div class="checkbox-group">
+                    <div><input type="checkbox" value="مرض مزمن"><label>مرض مزمن</label></div>
+                    <div><input type="checkbox" value="إعاقة"><label>إعاقة</label></div>
+                    <div><input type="checkbox" value="علاج متكرر"><label>علاج متكرر</label></div>
+                    <div><input type="checkbox" value="صحة متوسطة"><label>صحة متوسطة</label></div>
+                    <div><input type="checkbox" value="صحة مستقرة"><label>صحة مستقرة</label></div>
+                    <div><input type="checkbox" value="صحة جيدة"><label>صحة جيدة</label></div>
+                </div>
+            </div>
+
+            <div class="form-group"><label>عدد الأبناء المستمرين بالدراسة:</label><input type="number" min="0" placeholder="0"></div>
+            <div class="form-group"><label>نوع المدارس:</label><select><option value="">-- اختر --</option><option value="اهلي">أهلي</option><option value="حكومي">حكومي</option></select></div>
+
+            <div class="form-group"><label>المعيشة والأجهزة:</label><select><option value="">-- اختر --</option><option value="يفتقر للاجهزة الكهربائية">يفتقر للاجهزة الكهربائية</option><option value="يمتلك القليل من الأجهزة">يمتلك القليل من الأجهزة</option><option value="يمتلك اغلبها">يمتلك اغلبها</option><option value="مكتملة بحالة بسيطة">مكتملة بحالة بسيطة</option><option value="مكتملة و جيدة">مكتملة و جيدة</option></select></div>
+
+            <div class="form-group"><label>الدخل والمعيل:</label><select><option value="">-- اختر --</option><option value="لا يوجد دخل ثابت">لا يوجد دخل ثابت</option><option value="دخل ضعيف جدا">دخل ضعيف جدا</option><option value="دخل متوسط">دخل متوسط</option><option value="دخل ثابت و مقبول">دخل ثابت و مقبول</option><option value="دخل جيد">دخل جيد</option></select></div>
+            
+            <hr class="card-separator">
+            <h4>الحالة المادية للمستفيد</h4>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>الدخل الشهري:</label>
+                    <input type="number" class="beneficiary-income" placeholder="0" value="0">
+                </div>
+                <div class="form-group">
+                    <label>المصاريف الشهرية:</label>
+                    <input type="number" class="beneficiary-expenses" placeholder="0" value="0">
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>
